@@ -1,0 +1,23 @@
+stages:
+  now:
+    cmd: python src/get_data.py
+    deps:
+    - src/get_data.py
+    outs:
+    - smsspamcollection
+  preprocess:
+    cmd: python src/text_preprocessing.py smsspamcollection output/preprocessed_data.joblib
+      output/preprocessor.joblib
+    deps:
+    - smsspamcollection
+    - src/text_preprocessing.py
+    outs:
+    - output/preprocessed_data.joblib
+    - output/preprocessor.joblib
+  train:
+    cmd: python src/text_classification.py output/preprocessed_data.joblib output/model.joblib
+    deps:
+    - output/preprocessed_data.joblib
+    - src/text_classification.py
+    outs:
+    - output/model.joblib
