@@ -1,2 +1,6 @@
 [core]
     analytics = false
+    remote = mylocalremote
+    autostage = true
+['remote "mylocalremote"']
+    url = /Users/annavisman/remotedvc
